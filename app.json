@@ -5,6 +5,7 @@
     "entryPoint": "./app/_layout.tsx",
     "version": "1.0.0",
     "scheme": "myapp",
+    "newArchEnabled": true,
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

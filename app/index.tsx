@@ -6,6 +6,7 @@ import {
   TextInput,
   FlatList,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { FIREBASE_AUTH, FIRESTORE_DB } from "../firebaseConfig";
 import {
@@ -36,13 +37,11 @@ const Index = () => {
 
   useEffect(() => {
     if (!loading && !user) {
-      console.log("chuyển đến login");
       router.replace("/Login");
       return;
     }
 
     if (user) {
-      console.log(user.email);
       const todoRef = query(
         collection(FIRESTORE_DB, "todos"),
         where("uid", "==", user.uid)
@@ -50,7 +49,6 @@ const Index = () => {
 
       const subscriber = onSnapshot(todoRef, {
         next: (snapshot) => {
-          console.log("UPDATED");
           const todos: any[] = [];
           snapshot.docs.forEach((doc) => {
             todos.push({
@@ -82,7 +80,7 @@ const Index = () => {
 
       router.replace("/Login");
     } catch (error) {
-      console.error("Error signing out:", error);
+      alert("Error signing out:" + error);
     }
   };
 
